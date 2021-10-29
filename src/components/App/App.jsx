@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router';
-import { fetchContacts } from 'redux/contacts/contactsOperations';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from 'components/AppBar/AppBar';
@@ -16,7 +16,7 @@ export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (

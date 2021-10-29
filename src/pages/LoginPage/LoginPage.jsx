@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logIn } from "redux/auth/authOperations";
 
 import { Container } from "./LoginPage.styled";
 
 export const LoginPage = () => {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -23,7 +26,7 @@ export const LoginPage = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-
+        dispatch(logIn({ email, password }));
         resetForm();
     };
 
@@ -47,7 +50,7 @@ export const LoginPage = () => {
                     <input type="password" name="password" value={password} onChange={handleChange} />
                 </label>
 
-                <button type="submit">Enter</button>
+                <button type="submit">Log in</button>
             </form>
         </Container>
     )

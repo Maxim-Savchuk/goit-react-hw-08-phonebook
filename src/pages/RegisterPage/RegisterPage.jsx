@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "redux/auth/authOperations";
 
 import { Container } from "./RegisterPage.styled";
 
 export const RegisterPage = () => {
+    const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -27,7 +30,7 @@ export const RegisterPage = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-
+        dispatch(register({ name, email, password }));
         resetForm();
     };
 
