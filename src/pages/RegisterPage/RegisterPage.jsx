@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "redux/auth/authOperations";
 
-import { Container } from "./RegisterPage.styled";
+import { Container, Title, Form, Label, Input, Button } from "./RegisterPage.styled";
 
 const RegisterPage = () => {
     const dispatch = useDispatch();
@@ -42,26 +42,26 @@ const RegisterPage = () => {
 
     return (
         <Container>
-            <h2>RegisterPage</h2>
+            <Title>SignUp into <span>Phonebook</span> app</Title>
 
-            <form onSubmit={handleSubmit} autoComplete="off">
-                <label>
+            <Form onSubmit={handleSubmit} autoComplete="off">
+                <Label>
                     Name
-                    <input type="name" name="name" value={name} onChange={handleChange} />
-                </label>
+                    <Input type="name" name="name" value={name} onChange={handleChange} />
+                </Label>
 
-                <label>
+                <Label>
                     Email
-                    <input type="email" name="email" value={email} onChange={handleChange} />
-                </label>
+                    <Input type="email" name="email" value={email} onChange={handleChange} />
+                </Label>
 
-                <label>
+                <Label>
                     Password
-                    <input type="password" name="password" value={password} onChange={handleChange} />
-                </label>
+                    <Input type="password" name="password" value={password} onChange={handleChange} />
+                </Label>
 
-                <button type="submit">Register now</button>
-            </form>
+                <Button type="submit">Register now</Button>
+            </Form>
         </Container>
     )
 }

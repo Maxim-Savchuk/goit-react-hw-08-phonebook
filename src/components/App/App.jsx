@@ -1,11 +1,14 @@
 import { useEffect, Suspense, lazy } from 'react';
-import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { getIsFetchingCurrent } from 'redux/auth/authSelectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from 'components/AppBar';
 import { LoaderSpinner } from 'components/Loader';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { PublicRoute } from 'components/PublicRoute';
 
 import { Container } from './App.styled';
 
@@ -17,6 +20,7 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage' /* webp
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(getIsFetchingCurrent);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
@@ -24,34 +28,31 @@ export const App = () => {
 
   return (
     <Container>
-      <AppBar />
-
-      <Switch>
-        <Suspense fallback={<LoaderSpinner />}>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-
-          <Route path="/register">
-            <RegisterPage />
-          </Route>
-
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-
-          <Route path="/contacts">
-            <ContactsPage />
-          </Route>
-
-          <Route>
-            <NotFoundPage />
-          </Route>
-        </Suspense>
-      </Switch>
-
+      {!isFetchingCurrentUser && (
+        <>
+          <AppBar />
+          <Suspense fallback={<LoaderSpinner />}>
+            <Switch>
+              <PublicRoute exact path="/">
+                <HomePage />
+              </PublicRoute>
+              <PublicRoute exact path="/register" restricted redirectTo="/contacts">
+                <RegisterPage />
+              </PublicRoute>
+              <PublicRoute exact path="/login" restricted redirectTo="/contacts">
+                <LoginPage />
+              </PublicRoute>
+              <PrivateRoute path="/contacts" redirectTo="/login">
+                <ContactsPage />
+              </PrivateRoute>
+              <PublicRoute>
+                <NotFoundPage />
+              </PublicRoute>
+            </Switch>
+          </Suspense>
+        </>
+      )}
       <ToastContainer autoClose={2000} />
     </Container>
   )
 }
-

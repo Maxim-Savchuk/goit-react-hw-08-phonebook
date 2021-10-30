@@ -7,6 +7,7 @@ import { Item, Button, Trash } from './ContactList.styled';
 export const ContactList = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(getVisibleContacts);
+    const onDeleteContact = id => dispatch(deleteContact(id));
 
     return (
         <div>
@@ -17,12 +18,12 @@ export const ContactList = () => {
                             {name}: {number}
                             <Button
                                 type="button"
-                                onClick={() => dispatch(deleteContact(id))}
+                                onClick={() => onDeleteContact(id)}
                             >Delete<Trash /></Button>
                         </Item>
                     );
                 })}
             </ul>
-        </div>
+        </div >
     );
 };
