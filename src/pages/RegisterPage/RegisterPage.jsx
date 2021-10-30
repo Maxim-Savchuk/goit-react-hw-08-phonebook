@@ -4,7 +4,7 @@ import { register } from "redux/auth/authOperations";
 
 import { Container } from "./RegisterPage.styled";
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -65,3 +65,5 @@ export const RegisterPage = () => {
         </Container>
     )
 }
+
+export default RegisterPage;

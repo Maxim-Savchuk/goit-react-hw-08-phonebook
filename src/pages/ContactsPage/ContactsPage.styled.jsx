@@ -3,7 +3,7 @@ import { RiContactsBookLine } from 'react-icons/ri';
 import { MdPeopleAlt } from 'react-icons/md';
 
 export const Container = styled.div`
-  padding: 65px 0 0 0;
+  padding: 15px 0 0 0;
   max-width: 800px;
   margin: 0 auto;
 `;

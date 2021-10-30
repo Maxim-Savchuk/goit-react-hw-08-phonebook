@@ -1,50 +1,31 @@
 import axios from 'axios';
-import {
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-} from './contactsActions';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
-
+const fetchContacts = createAsyncThunk('contacts/fetchContacts', async (_, { rejectWithValue }) => {
   try {
     const { data } = await axios.get('/contacts');
-    dispatch(fetchContactsSuccess(data));
+    return data;
   } catch (error) {
-    dispatch(fetchContactsError(error));
+    return rejectWithValue(error.message);
   }
-};
+});
 
-const addContact = (name, number) => async dispatch => {
-  const contact = { name, number };
-
-  dispatch(addContactRequest());
-
+const addContact = createAsyncThunk('contacts/addContact', async (contact, { rejectWithValue }) => {
   try {
     const { data } = await axios.post('/contacts', contact);
-    dispatch(addContactSuccess(data));
+    return data;
   } catch (error) {
-    dispatch(addContactError(error));
+    return rejectWithValue(error.message);
   }
-};
+});
 
-const deleteContact = contactId => async dispatch => {
-  dispatch(deleteContactRequest());
-
+const deleteContact = createAsyncThunk('contacts/add', async (contactId, { rejectWithValue }) => {
   try {
-    const response = await axios.delete(`/contacts/${contactId}`);
-    dispatch(deleteContactSuccess(contactId));
-    return response;
+    const { data } = await axios.delete(`/contacts/${contactId}`);
+    return data;
   } catch (error) {
-    dispatch(deleteContactError(error));
+    return rejectWithValue(error.message);
   }
-};
+});
 
 export { fetchContacts, addContact, deleteContact };

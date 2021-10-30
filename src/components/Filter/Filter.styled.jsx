@@ -19,6 +19,7 @@ export const Input = styled.input`
   height: 20px;
   border: 2px solid black;
   margin-top: 7px;
+  margin-right: 25px;
   transition: all 300ms ease-in;
   &:hover,
   &:focus {

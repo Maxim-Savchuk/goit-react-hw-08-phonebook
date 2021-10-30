@@ -1,11 +1,15 @@
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { LoaderSpinner } from 'components/Loader/Loader';
 import { changeFilter } from 'redux/contacts/contactsActions';
 import { getFilter, getLoading } from 'redux/contacts/contactsSelectors';
 
 import { Container, Label, Input } from './Filter.styled';
 
-const Filter = ({ value, onChange, isLoadingContacts }) => {
+export const Filter = () => {
+    const dispatch = useDispatch();
+    const value = useSelector(getFilter);
+    const isLoadingContacts = useSelector(getLoading)
+
     return (
         <Container>
             <Label>
@@ -13,21 +17,10 @@ const Filter = ({ value, onChange, isLoadingContacts }) => {
                 <Input
                     type="text"
                     value={value}
-                    onChange={onChange} />
+                    onChange={event => dispatch(changeFilter(event.target.value))} />
             </Label>
             {isLoadingContacts && <LoaderSpinner />}
         </Container>
 
     );
 };
-
-const mapStateToProps = (state) => ({
-    value: getFilter(state),
-    isLoadingContacts: getLoading(state),
-})
-
-const mapDispatchToProps = dispatch => ({
-    onChange: event => dispatch(changeFilter(event.target.value)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);

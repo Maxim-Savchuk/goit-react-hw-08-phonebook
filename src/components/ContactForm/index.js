@@ -1,1 +1,1 @@
-export { default as ContactForm } from './ContactForm.jsx';
+export * from './ContactForm.jsx';

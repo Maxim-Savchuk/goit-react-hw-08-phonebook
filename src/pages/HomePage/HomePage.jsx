@@ -1,6 +1,6 @@
 import { Container, Title } from "./HomePage.styled"
 
-export const HomePage = () => {
+const HomePage = () => {
     return (
         <Container>
             <Title>Welcome page of our service</Title>
@@ -8,3 +8,4 @@ export const HomePage = () => {
     )
 }
 
+export default HomePage;

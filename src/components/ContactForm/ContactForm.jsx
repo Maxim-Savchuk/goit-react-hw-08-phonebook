@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { connect } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations'
 import { getContacts } from 'redux/contacts/contactsSelectors';
 
 import { Container, Form, Label, Input, Button, Plus } from './ContactForm.styled';
 
-const ContactForm = ({ onSubmit, contacts }) => {
+export const ContactForm = () => {
+    const dispatch = useDispatch();
+    const contacts = useSelector(getContacts)
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
@@ -37,7 +39,7 @@ const ContactForm = ({ onSubmit, contacts }) => {
             return;
         }
 
-        onSubmit(name, number);
+        dispatch(addContact({ name, number }));
         resetForm();
     };
 
@@ -78,11 +80,3 @@ const ContactForm = ({ onSubmit, contacts }) => {
         </Container>
     );
 }
-
-const mapStateToProps = (state) => ({ contacts: getContacts(state) });
-
-const mapDispatchToProps = dispatch => ({
-    onSubmit: (name, number) => dispatch(addContact(name, number)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

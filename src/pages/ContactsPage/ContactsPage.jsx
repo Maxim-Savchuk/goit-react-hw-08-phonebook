@@ -7,7 +7,7 @@ import { ContactList } from 'components/ContactList';
 
 import { Container, PhonebookTitle, ContactsTitle, PhonebookIcon, PeopleIcon } from './ContactsPage.styled';
 
-export const ContactsPage = () => {
+const ContactsPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,3 +25,5 @@ export const ContactsPage = () => {
         </Container>
     )
 }
+
+export default ContactsPage;

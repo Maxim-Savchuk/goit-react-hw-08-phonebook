@@ -4,7 +4,7 @@ import { logIn } from "redux/auth/authOperations";
 
 import { Container } from "./LoginPage.styled";
 
-export const LoginPage = () => {
+const LoginPage = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -55,3 +55,5 @@ export const LoginPage = () => {
         </Container>
     )
 }
+
+export default LoginPage;
