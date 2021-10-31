@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-    color: #020202;
+    color: #56555a;
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 500;

@@ -1,4 +1,8 @@
 import styled from "@emotion/styled";
+import { BsPersonFill } from 'react-icons/bs';
+import { HiOutlineMail } from 'react-icons/hi';
+import { RiLockPasswordLine } from 'react-icons/ri';
+import { CgEnter } from 'react-icons/cg';
 
 export const Container = styled.div`
   padding: 0 0 0 0;
@@ -9,6 +13,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   text-align: center;
   font-size: 28px;
+  color: #56555a;
   & > span{
     color: rgb(55, 150, 214);
   }
@@ -19,7 +24,8 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 26px 0;
-  border: 2px solid grey;
+  border: 2px solid rgb(73, 167, 230);
+  border-radius: 6px;
 `;
 
 export const Label = styled.label`
@@ -27,6 +33,14 @@ export const Label = styled.label`
   flex-direction: column;
   font-weight: 600;
   font-size: 24px;
+  color: rgb(73, 167, 230);
+  &:not(:first-child){
+    margin-top: 16px;
+  }
+  & > span {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Input = styled.input`
@@ -34,8 +48,11 @@ export const Input = styled.input`
   border-radius: 4px;
   padding: 4px 7px;
   height: 20px;
-  border: 2px solid black;
-  margin-top: 16px;
+  border: 2px solid #56555a;
+  margin-top: 12px;
+  background-color: transparent;
+  color: rgb(73, 167, 230);
+  font-size: 18px;
   transition: all 300ms ease-in;
   &:hover,
   &:focus {
@@ -52,19 +69,42 @@ export const Button = styled.button`
   text-transform: uppercase;
   width: 190px;
   margin-top: 30px;
-  background-color: transparent;
+  background-color: rgb(73, 167, 230);
+  border: 2px solid rgb(73, 167, 230);
   border-radius: 4px;
-  border: 2px solid grey;
-  font-size: 12px;
+  color: #fff;
+  font-size: 14px;
   padding: 7px 10px;
   cursor: pointer;
   font-weight: 600;
-  
-  transition: all 250ms ease-in;
+  transition: all 300ms ease-in;
   &:hover,
   &:focus{
-    border: 2px solid rgb(55, 150, 214);
-    background-color: rgb(55, 150, 214);
-    color: #fff;
+    border: 2px solid rgb(73, 167, 230);
+    background-color: transparent;
+    color: rgb(73, 167, 230);
   }
+`;
+
+export const NameIcon = styled(BsPersonFill)`
+    font-size: 22px;
+    margin-left: 6px;
+    margin-top: 3px;
+`;
+
+export const EmailIcon = styled(HiOutlineMail)`
+    font-size: 22px;
+    margin-left: 6px;
+    margin-top: 3px;
+`;
+
+export const PasswordIcon = styled(RiLockPasswordLine)`
+    font-size: 22px;
+    margin-left: 6px;
+    margin-top: 3px;
+`;
+
+export const SignupIcon = styled(CgEnter)`
+    font-size: 16px;
+    margin-left: 6px;
 `;

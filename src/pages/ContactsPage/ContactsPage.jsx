@@ -5,7 +5,7 @@ import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
 import { ContactList } from 'components/ContactList';
 
-import { Container, PhonebookTitle, ContactsTitle, PhonebookIcon, PeopleIcon } from './ContactsPage.styled';
+import { Container, FormContainer, ListContainer, PhonebookTitle, ContactsTitle, PhonebookIcon, PeopleIcon } from './ContactsPage.styled';
 
 const ContactsPage = () => {
     const dispatch = useDispatch();
@@ -16,12 +16,15 @@ const ContactsPage = () => {
 
     return (
         <Container>
-            <PhonebookTitle>Phonebook<PhonebookIcon /></PhonebookTitle>
-            <ContactForm />
-
-            <ContactsTitle>Contacts<PeopleIcon /></ContactsTitle>
-            <Filter />
-            <ContactList />
+            <FormContainer>
+                <PhonebookTitle>Phonebook<PhonebookIcon /></PhonebookTitle>
+                <ContactForm />
+            </FormContainer>
+            <ListContainer>
+                <ContactsTitle>Contacts<PeopleIcon /></ContactsTitle>
+                <Filter />
+                <ContactList />
+            </ListContainer>
         </Container>
     )
 }

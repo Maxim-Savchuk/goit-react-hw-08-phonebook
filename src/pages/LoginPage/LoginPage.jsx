@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "redux/auth/authOperations";
 
-import { Container, Title, Form, Label, Input, Button } from "./LoginPage.styled";
+import { Container, Title, Form, Label, Input, Button, EmailIcon, PasswordIcon, LoginIcon } from "./LoginPage.styled";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
@@ -37,20 +37,20 @@ const LoginPage = () => {
 
     return (
         <Container>
-            <Title>LogIn into <span>Phonebook</span> app</Title>
+            <Title>Log in to <span>Phonebook</span> app</Title>
 
             <Form onSubmit={handleSubmit} autoComplete="off">
                 <Label>
-                    Email
+                    <span>Email <EmailIcon /></span>
                     <Input type="email" name="email" value={email} onChange={handleChange} />
                 </Label>
 
                 <Label>
-                    Password
+                    <span>Password <PasswordIcon /></span>
                     <Input type="password" name="password" value={password} onChange={handleChange} />
                 </Label>
 
-                <Button type="submit">Log in</Button>
+                <Button type="submit">Log in<LoginIcon /></Button>
             </Form>
         </Container>
     )

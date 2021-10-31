@@ -4,6 +4,11 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    url('./images/home-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh;
 }
 
 code {
@@ -19,4 +24,16 @@ li {
 button,
 a {
   cursor: pointer;
+}
+
+/* -----------------SCROLLBAR--------------------*/
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgb(73, 167, 230);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #56555a;
+  border-radius: 5px;
 }

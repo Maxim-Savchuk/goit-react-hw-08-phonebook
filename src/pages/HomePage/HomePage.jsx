@@ -1,9 +1,10 @@
-import { Container, Title } from "./HomePage.styled"
+import { Container, Title, HandsIcon } from "./HomePage.styled"
 
 const HomePage = () => {
     return (
         <Container>
-            <Title>Welcome page of our service</Title>
+            <Title>Welcome <span>page</span> of <span>our</span> service</Title>
+            <HandsIcon />
         </Container>
     )
 }
