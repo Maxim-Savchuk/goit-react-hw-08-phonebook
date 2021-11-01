@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './contactsOperations';
 import { changeFilter } from './contactsActions';
+import { logOut } from 'redux/auth/authOperations';
 
 const items = createReducer([], {
   [fetchContacts.fulfilled]: (_, { payload }) => payload,
   [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
   [deleteContact.fulfilled]: (state, { payload }) => state.filter(({ id }) => id !== payload),
+  [logOut.fulfilled]: state => (state = []),
 });
 
 const filter = createReducer('', {

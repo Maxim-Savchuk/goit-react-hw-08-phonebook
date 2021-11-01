@@ -21,7 +21,7 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 22px;
   color: rgb(73, 167, 230);
-  &:not(:first-child){
+  &:not(:first-of-type){
     margin-top: 20px;
   }
 `;
