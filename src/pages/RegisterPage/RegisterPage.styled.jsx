@@ -34,9 +34,6 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 24px;
   color: rgb(73, 167, 230);
-  &:not(:first-of-type){
-    margin-top: 16px;
-  }
   & > span {
     display: flex;
     align-items: center;
@@ -68,7 +65,7 @@ export const Button = styled.button`
   justify-content: center;
   text-transform: uppercase;
   width: 190px;
-  margin-top: 30px;
+  margin-top: 15px;
   background-color: rgb(73, 167, 230);
   border: 2px solid rgb(73, 167, 230);
   border-radius: 4px;
@@ -84,6 +81,14 @@ export const Button = styled.button`
     background-color: transparent;
     color: rgb(73, 167, 230);
   }
+`;
+
+export const ErrorValidation = styled.div`
+  font-weight: 500;
+  font-size: 14px;
+  color: red;
+  height: 36px;
+  margin-bottom: 4px;
 `;
 
 export const NameIcon = styled(BsPersonFill)`

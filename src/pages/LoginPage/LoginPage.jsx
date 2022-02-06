@@ -1,54 +1,61 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useForm } from 'react-hook-form';
 import { logIn } from "redux/auth/authOperations";
 
-import { Container, Title, Form, Label, Input, Button, EmailIcon, PasswordIcon, LoginIcon } from "./LoginPage.styled";
+import {
+    Container,
+    Title,
+    Form,
+    Label,
+    Input,
+    Button,
+    EmailIcon,
+    PasswordIcon,
+    LoginIcon,
+    ErrorValidation
+} from "./LoginPage.styled";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { register, formState: { errors }, handleSubmit, reset } = useForm({ mode: 'onBlur' });
 
-    const handleChange = e => {
-        const { name, value } = e.currentTarget;
+    const onFormSubmit = data => {
+        userSubmit(data);
+        reset();
+    }
 
-        switch (name) {
-            case 'email':
-                setEmail(value);
-                break;
-            case 'password':
-                setPassword(value);
-                break;
-            default:
-                return;
-        }
-    };
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        dispatch(logIn({ email, password }));
-        resetForm();
-    };
-
-    const resetForm = () => {
-        setEmail('');
-        setPassword('');
+    const userSubmit = (data) => {
+        dispatch(logIn(data))
     }
 
     return (
         <Container>
             <Title>Log in to <span>Phonebook</span> app</Title>
 
-            <Form onSubmit={handleSubmit} autoComplete="off">
+            <Form onSubmit={handleSubmit(onFormSubmit)} autoComplete="off">
                 <Label>
                     <span>Email <EmailIcon /></span>
-                    <Input type="email" name="email" value={email} onChange={handleChange} />
+                    <Input type="email"
+                        {...register('email', {
+                            required: 'Это обязательное поле'
+                        })}
+                    />
                 </Label>
+                <ErrorValidation>{errors?.email && <p>{errors?.email.message || 'Error'}</p>}</ErrorValidation>
 
                 <Label>
                     <span>Password <PasswordIcon /></span>
-                    <Input type="password" name="password" value={password} onChange={handleChange} />
+                    <Input type="password"
+                        {...register('password', {
+                            required: 'Это обязательное поле',
+                            minLength: {
+                                value: 8,
+                                message: 'Минимум 8 символов'
+                            }
+                        })}
+                    />
                 </Label>
+                <ErrorValidation>{errors?.password && <p>{errors?.password.message || 'Error'}</p>}</ErrorValidation>
 
                 <Button type="submit">Log in<LoginIcon /></Button>
             </Form>

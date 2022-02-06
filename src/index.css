@@ -6,6 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
     url('./images/home-bg.jpg');
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   min-height: 100vh;
